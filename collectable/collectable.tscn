@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh2llglkroddq"]
+
+[ext_resource type="Script" path="res://game_board/collectable.gd" id="1_xuah8"]
+[ext_resource type="Texture2D" uid="uid://by5k80dodrdyh" path="res://assets/coletavel.png" id="2_1f0yj"]
+[ext_resource type="Script" path="res://game_board/collect_area.gd" id="3_5qfan"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8g8x"]
+size = Vector2(32, 32)
+
+[node name="Collectable" type="Node2D"]
+position = Vector2(352, 416)
+script = ExtResource("1_xuah8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1f0yj")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 0
+script = ExtResource("3_5qfan")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("RectangleShape2D_t8g8x")

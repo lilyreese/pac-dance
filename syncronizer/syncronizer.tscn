@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv702tyfy3shc"]
+
+[ext_resource type="Script" path="res://syncronizer/syncronizer.gd" id="1_4tbp6"]
+[ext_resource type="AudioStream" uid="uid://cmphx6g0ogjvb" path="res://Disco_Lounge_110bpm.mp3" id="2_g4hqe"]
+
+[node name="Syncronizer" type="Node" node_paths=PackedStringArray("audio_stream") groups=["syncronizer"]]
+script = ExtResource("1_4tbp6")
+audio_stream = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_g4hqe")
+volume_db = -10.0

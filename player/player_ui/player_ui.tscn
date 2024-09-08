@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjdxvudhuv3lk"]
+
+[ext_resource type="Script" path="res://player/player_ui/arrows.gd" id="1_v2afq"]
+[ext_resource type="Texture2D" uid="uid://qqae4fiwdu0w" path="res://player/sprites/arrows/arrow_up.png" id="2_tmhmv"]
+[ext_resource type="Texture2D" uid="uid://df6fobc4g3cxs" path="res://player/sprites/arrows/arrow_down.png" id="3_eowcy"]
+[ext_resource type="Texture2D" uid="uid://diwcuswjspgfn" path="res://player/sprites/arrows/arrow_left.png" id="4_fcms1"]
+[ext_resource type="Texture2D" uid="uid://dlaa2wjdmkg1g" path="res://player/sprites/arrows/arrow_right.png" id="5_vd665"]
+[ext_resource type="Script" path="res://player/player_ui/score.gd" id="6_iog37"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3q0tc"]
+font_size = 64
+
+[node name="PlayerUI" type="CanvasLayer"]
+
+[node name="Arrows" type="Control" parent="." node_paths=PackedStringArray("arrow_left", "arrow_right", "arrow_up", "arrow_down")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v2afq")
+arrow_left = NodePath("ArrowLeft")
+arrow_right = NodePath("ArrowRight")
+arrow_up = NodePath("ArrowUp")
+arrow_down = NodePath("ArrowDown")
+
+[node name="ArrowUp" type="TextureRect" parent="Arrows"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -157.0
+offset_right = 32.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("2_tmhmv")
+expand_mode = 2
+
+[node name="ArrowDown" type="TextureRect" parent="Arrows"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -81.0
+offset_right = 32.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("3_eowcy")
+
+[node name="ArrowLeft" type="TextureRect" parent="Arrows"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -116.0
+offset_right = -44.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("4_fcms1")
+
+[node name="ArrowRight" type="TextureRect" parent="Arrows"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -117.0
+offset_right = 109.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("5_vd665")
+
+[node name="Score" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_iog37")
+
+[node name="ScoreLabel" type="Label" parent="Score"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_3q0tc")

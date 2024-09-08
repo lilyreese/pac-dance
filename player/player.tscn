@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://j5ll5q6mt1dm"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_1orei"]
+[ext_resource type="Texture2D" uid="uid://cl0hw32bsfmgv" path="res://assets/character.png" id="2_ffr4l"]
+[ext_resource type="PackedScene" uid="uid://bjdxvudhuv3lk" path="res://player/player_ui/player_ui.tscn" id="3_vynyl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkxb0"]
+size = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mpvj"]
+size = Vector2(64, 64)
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("sprite", "hurtbox") groups=["player"]]
+position = Vector2(32, 32)
+script = ExtResource("1_1orei")
+sprite = NodePath("Sprite2D")
+hurtbox = NodePath("hurtbox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ffr4l")
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("RectangleShape2D_bkxb0")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("RectangleShape2D_5mpvj")
+
+[node name="PlayerUI" parent="." instance=ExtResource("3_vynyl")]
