@@ -21,6 +21,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 
+[dotnet]
+
+project/assembly_name="pac-dance"
+
 [global_group]
 
 player=""

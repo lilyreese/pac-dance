@@ -6,10 +6,13 @@ signal score_changed(new_score:int)
 signal game_over()
 signal game_finished()
 
-const STAGE_1 = preload("res://stages/stage_1.tscn")
-const STAGE_2 = preload("res://stages/stage_2.tscn")
-const STAGE_3 = preload("res://stages/stage_3.tscn")
-const STAGE_4 = preload("res://stages/stage_4.tscn")
+@onready var STAGES = [ preload("res://stages/stage_1.tscn"),
+				preload("res://stages/stage_2.tscn"),
+				preload("res://stages/stage_3.tscn"),
+				preload("res://stages/stage_4.tscn"),
+				preload("res://stages/stage_5.tscn"),
+				preload("res://stages/stage_6.tscn")
+				]
 
 var player:Player 
 var score:int = 0
@@ -30,29 +33,16 @@ func _on_player_collected() -> void:
 	score_changed.emit(score)
 	
 func _start_stage(index:int) -> void:
-	match index:
-		1:
-			current_stage = STAGE_1.instantiate()
-			add_child(current_stage)
-			if !current_stage.stage_clear.is_connected(_on_stage_clear):
-				current_stage.stage_clear.connect(_on_stage_clear.bind(false))
-		2:
-			current_stage = STAGE_2.instantiate()
-			add_child(current_stage)
-			if !current_stage.stage_clear.is_connected(_on_stage_clear):
-				current_stage.stage_clear.connect(_on_stage_clear.bind(false))
-		3:
-			current_stage = STAGE_3.instantiate()
-			add_child(current_stage)
-			if !current_stage.stage_clear.is_connected(_on_stage_clear):
-				current_stage.stage_clear.connect(_on_stage_clear.bind(false))
-		4:
-			current_stage = STAGE_4.instantiate()
-			add_child(current_stage)
-			if !current_stage.stage_clear.is_connected(_on_stage_clear):
-				current_stage.stage_clear.connect(_on_stage_clear.bind(false))
-		_:
-			game_finished.emit(score)			
+	if STAGES.size() >= index:
+		current_stage = STAGES[index-1].instantiate()
+	else:
+		game_finished.emit(score)
+		return
+	
+	current_stage.increase_bpm((index-1)*10)
+	add_child(current_stage)
+	if !current_stage.stage_clear.is_connected(_on_stage_clear):
+		current_stage.stage_clear.connect(_on_stage_clear.bind(false))
 	
 	player = get_tree().get_first_node_in_group("player")
 	if !player:

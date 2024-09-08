@@ -21,26 +21,23 @@ func _ready() -> void:
 	_on_player_movement_direction_changed(player.movement_direction)
 	
 func _hide_all_arrows() -> void:
-	arrow_left.hide()
-	arrow_right.hide()
-	arrow_up.hide()
-	arrow_down.hide()
+	arrow_left.modulate.a = 0.1
+	arrow_right.modulate.a = 0.1
+	arrow_up.modulate.a = 0.1
+	arrow_down.modulate.a = 0.1
 	
 func _on_player_movement_direction_changed(new_direction:Vector2) -> void:	
 	_hide_all_arrows()
 	if new_direction == Vector2.LEFT:
-		arrow_left.show()
 		current_arrow = arrow_left
 	if new_direction == Vector2.RIGHT:
-		arrow_right.show()
 		current_arrow = arrow_right
 	if new_direction == Vector2.UP:
-		arrow_up.show()
 		current_arrow = arrow_up
 	if new_direction == Vector2.DOWN:
-		arrow_down.show()
 		current_arrow = arrow_down
-		
+	current_arrow.modulate.a = 1.0
+	
 func _on_syncronizer_beat(_beat_time) -> void:
 	pulsate()
 	

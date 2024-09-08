@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://klbqq5cyyr4p"]
 
-[ext_resource type="PackedScene" uid="uid://biinyudvtrxqp" path="res://stages/stage_1.tscn" id="1_47exo"]
+[ext_resource type="PackedScene" uid="uid://biinyudvtrxqp" path="res://stages/base_stage.tscn" id="1_47exo"]
 [ext_resource type="PackedScene" uid="uid://bh2llglkroddq" path="res://collectable/collectable.tscn" id="2_v10fp"]
 
 [node name="Stage2" instance=ExtResource("1_47exo")]

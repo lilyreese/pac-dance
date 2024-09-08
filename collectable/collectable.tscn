@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh2llglkroddq"]
+[gd_scene load_steps=10 format=3 uid="uid://bh2llglkroddq"]
 
 [ext_resource type="Script" path="res://game_board/collectable.gd" id="1_xuah8"]
 [ext_resource type="Texture2D" uid="uid://by5k80dodrdyh" path="res://assets/coletavel.png" id="2_1f0yj"]
@@ -6,6 +6,31 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8g8x"]
 size = Vector2(32, 32)
+
+[sub_resource type="Curve" id="Curve_fvj33"]
+_data = [Vector2(0, 0.21978), 0.0, 2.47253, 0, 0, Vector2(1, 0.549451), -5.39461, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fc1sx"]
+curve = SubResource("Curve_fvj33")
+
+[sub_resource type="Curve" id="Curve_xetgl"]
+max_value = 100.0
+_data = [Vector2(0, 100), 0.0, 0.0, 0, 0, Vector2(1, 0), -721.155, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4vfl0"]
+curve = SubResource("Curve_xetgl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ei8pa"]
+particle_flag_disable_z = true
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 2.99998
+radial_velocity_curve = SubResource("CurveTexture_4vfl0")
+gravity = Vector3(0, 9.8, 0)
+scale_min = 1.5
+scale_max = 2.0
+alpha_curve = SubResource("CurveTexture_fc1sx")
 
 [node name="Collectable" type="Node2D"]
 position = Vector2(352, 416)
@@ -21,3 +46,12 @@ script = ExtResource("3_5qfan")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
 shape = SubResource("RectangleShape2D_t8g8x")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_ei8pa")
+texture = ExtResource("2_1f0yj")
+one_shot = true
+explosiveness = 0.6
+randomness = 1.0

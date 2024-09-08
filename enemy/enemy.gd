@@ -32,8 +32,18 @@ func _on_syncronizer_beat(_beat_time:float) -> void:
 		next_move_direction = Vector2(0,sign(intended_direction.y))
 	else:
 		next_move_direction = Vector2.ZERO
+	look_at_next_direction()
 	pulsate()
 	tween_position()
+
+func look_at_next_direction() -> void:
+	var rotation = 0
+	if next_move_direction == Vector2.UP:
+		rotation = 270
+	elif next_move_direction == Vector2.DOWN:
+		rotation = 90
+	$Sprite2D.flip_h = next_move_direction == Vector2.LEFT
+	$Sprite2D.set_rotation_degrees(rotation)
 
 func tween_position() -> void:
 	var tween:Tween = get_tree().create_tween()

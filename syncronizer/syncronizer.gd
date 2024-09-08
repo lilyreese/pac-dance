@@ -1,5 +1,7 @@
 class_name Syncronizer extends Node
 
+const INITIAL_BPM : float = 110
+
 signal beat(beat_time:float)
 
 @export var audio_stream:AudioStreamPlayer
@@ -20,6 +22,9 @@ func play_audio_stream() -> void:
 	await get_tree().create_timer(delay).timeout
 	
 	audio_stream.play()
+	audio_stream.pitch_scale = bpm/INITIAL_BPM
+	var effect : AudioEffectPitchShift = AudioServer.get_bus_effect(0, 0)
+	effect.pitch_scale = 1/audio_stream.pitch_scale
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

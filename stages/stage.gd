@@ -16,3 +16,6 @@ func _on_collectables_collected() -> void:
 
 func start_stage() -> void:
 	syncronizer.start_stage()
+
+func increase_bpm(increase: int) -> void:
+	$Syncronizer.bpm += increase
