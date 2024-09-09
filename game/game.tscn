@@ -1,52 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://b85q2mgl166h"]
+[gd_scene load_steps=7 format=3 uid="uid://b85q2mgl166h"]
 
-[ext_resource type="Script" path="res://game/main_manu.gd" id="1_5jfam"]
+[ext_resource type="Script" path="res://game/main_menu.gd" id="1_5jfam"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_vtonm"]
+[ext_resource type="FontFile" uid="uid://boh7kowsnm843" path="res://assets/fonts/Crackman Back.otf" id="3_l43h6"]
 [ext_resource type="Script" path="res://game/game_over.gd" id="3_yb4aq"]
+[ext_resource type="Texture2D" uid="uid://cl0hw32bsfmgv" path="res://assets/character.png" id="5_lyqhg"]
+[ext_resource type="AudioStream" uid="uid://c523lbag8323" path="res://playing-pac-man-6783.mp3" id="6_lnaug"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_vtonm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MainManu" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_5jfam")
-
-[node name="Label" type="Label" parent="CanvasLayer/MainManu"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -44.5
-offset_right = 44.5
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "PAC DANCE"
-
-[node name="Start" type="Button" parent="CanvasLayer/MainManu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = -15.5
-offset_right = 28.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "START
-"
-
 [node name="GameOver" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +21,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_yb4aq")
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameOver"]
+layout_mode = 0
+offset_right = 1281.0
+offset_bottom = 728.0
+color = Color(0, 0, 0, 1)
+
 [node name="Label" type="Label" parent="CanvasLayer/GameOver"]
 layout_mode = 1
 anchors_preset = 8
@@ -62,14 +34,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -43.5
-offset_top = -11.5
-offset_right = 43.5
-offset_bottom = 11.5
+offset_left = -214.0
+offset_top = -158.0
+offset_right = 211.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Game Over
-Score: 10"
+theme_override_colors/font_color = Color(0.863524, 0.441936, 0.254565, 1)
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER
+Score: X"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Back" type="Button" parent="CanvasLayer/GameOver"]
 layout_mode = 1
@@ -78,10 +54,96 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -57.0
-offset_top = 56.0
-offset_right = 57.0
-offset_bottom = 87.0
+offset_left = -118.0
+offset_top = 50.0
+offset_right = 135.0
+offset_bottom = 127.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.756812, 0.775971, 0.857299, 1)
+theme_override_font_sizes/font_size = 30
 text = "Back to Menu"
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5jfam")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MainMenu"]
+layout_mode = 0
+offset_right = 1298.0
+offset_bottom = 746.0
+color = Color(0.390608, 0.459686, 0.125777, 1)
+
+[node name="pac03" type="Sprite2D" parent="CanvasLayer/MainMenu/ColorRect"]
+modulate = Color(0.599648, 0.0119594, 0.194789, 1)
+position = Vector2(794, 283)
+texture = ExtResource("5_lyqhg")
+
+[node name="pac04" type="Sprite2D" parent="CanvasLayer/MainMenu/ColorRect"]
+modulate = Color(0.599648, 0.0119594, 0.194789, 1)
+position = Vector2(861, 347)
+rotation = -2.93564
+texture = ExtResource("5_lyqhg")
+
+[node name="pac05" type="Sprite2D" parent="CanvasLayer/MainMenu/ColorRect"]
+modulate = Color(0.599648, 0.0119594, 0.194789, 1)
+position = Vector2(927, 278)
+texture = ExtResource("5_lyqhg")
+flip_h = true
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 95.0
+offset_right = 1128.0
+offset_bottom = 248.0
+theme_override_fonts/normal_font = ExtResource("3_l43h6")
+theme_override_font_sizes/normal_font_size = 100
+text = "♫ Pac-Dance ♪
+"
+
+[node name="Start" type="Button" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.483
+anchor_top = 0.587
+anchor_right = 0.483
+anchor_bottom = 0.587
+offset_left = -127.24
+offset_top = 6.35999
+offset_right = 175.76
+offset_bottom = 83.36
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.392157, 0.458824, 0.12549, 1)
+theme_override_font_sizes/font_size = 50
+text = "START
+"
+
+[node name="pac03" type="Sprite2D" parent="CanvasLayer/MainMenu"]
+modulate = Color(0.599648, 0.0119594, 0.194789, 1)
+position = Vector2(379, 336)
+texture = ExtResource("5_lyqhg")
+
+[node name="pac05" type="Sprite2D" parent="CanvasLayer/MainMenu"]
+modulate = Color(0.599648, 0.0119594, 0.194789, 1)
+position = Vector2(520, 314)
+texture = ExtResource("5_lyqhg")
+
+[node name="pac06" type="Sprite2D" parent="CanvasLayer/MainMenu"]
+modulate = Color(0.599648, 0.0119594, 0.194789, 1)
+position = Vector2(446, 272)
+texture = ExtResource("5_lyqhg")
+
+[node name="pac04" type="Sprite2D" parent="CanvasLayer/MainMenu"]
+position = Vector2(657, 292)
+texture = ExtResource("5_lyqhg")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="CanvasLayer/MainMenu"]
+stream = ExtResource("6_lnaug")
+autoplay = true
