@@ -1,0 +1,113 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3b6hpux5rk0y"]
+
+[ext_resource type="Script" path="res://intro/intro.gd" id="1_bibpm"]
+
+[sub_resource type="Animation" id="Animation_3we6g"]
+resource_name = "Fade "
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro/FadeBackground:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_37kgh"]
+resource_name = "FadeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro/FadeBackground:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0mlor"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro/FadeBackground:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5prf"]
+_data = {
+"Fade ": SubResource("Animation_3we6g"),
+"FadeOut": SubResource("Animation_37kgh"),
+"RESET": SubResource("Animation_0mlor")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bibpm")
+
+[node name="Intro" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="Intro"]
+anchors_preset = -1
+anchor_right = 0.295312
+anchor_bottom = 0.295833
+offset_right = 913.0
+offset_bottom = 514.0
+color = Color(0.147672, 0.147672, 0.147672, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="IntroText" type="RichTextLabel" parent="Intro"]
+offset_left = 600.0
+offset_top = 307.0
+offset_right = 680.0
+offset_bottom = 329.0
+theme_override_font_sizes/normal_font_size = 14
+text = "A GAME BY
+"
+fit_content = true
+metadata/_edit_use_anchors_ = true
+
+[node name="IntroText2" type="RichTextLabel" parent="Intro"]
+offset_left = 519.0
+offset_top = 332.0
+offset_right = 820.0
+offset_bottom = 376.0
+theme_override_font_sizes/normal_font_size = 31
+text = "FLORIPA GAME JAM"
+fit_content = true
+metadata/_edit_use_anchors_ = true
+
+[node name="FadeBackground" type="ColorRect" parent="Intro"]
+anchors_preset = -1
+anchor_right = 0.30625
+anchor_bottom = 0.311111
+offset_right = 911.0
+offset_bottom = 507.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Intro"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_r5prf")
+}
