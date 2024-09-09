@@ -3,6 +3,7 @@ class_name Collectable extends Node2D
 signal is_collected()
 
 var syncronizer:Syncronizer
+var already_collected = false
 
 func _ready() -> void:
 	syncronizer = get_tree().get_first_node_in_group("syncronizer")
@@ -21,14 +22,14 @@ func pulsate() -> void:
 	tween.parallel().tween_property(self, 'rotation', 0, 0.1)
 	
 func collected() -> void:
-	is_collected.emit()
-	$GPUParticles2D.emitting = true
-	var tween:Tween = get_tree().create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(self, 'scale', Vector2(2, 2), 0.3)
-	tween.parallel().tween_property(self, 'modulate', Color.TRANSPARENT, 0.5)
-	
-	await get_tree().create_timer(1.0).timeout
-	queue_free()
+	if(!already_collected):
+		already_collected = true
+		is_collected.emit()
+		var tween:Tween = get_tree().create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_BOUNCE)
+		tween.tween_property($Sprite2D, 'scale', Vector2(2, 2), 0.3)
+		tween.parallel().tween_property($Sprite2D, 'position', Vector2(0, -16), 0.3)
+		tween.parallel().tween_property($Sprite2D, 'modulate', Color.TRANSPARENT, 0.3)
+		tween.tween_callback(queue_free)
 	

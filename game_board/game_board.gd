@@ -11,7 +11,11 @@ signal game_finished()
 				preload("res://stages/stage_3.tscn"),
 				preload("res://stages/stage_4.tscn"),
 				preload("res://stages/stage_5.tscn"),
-				preload("res://stages/stage_6.tscn")
+				preload("res://stages/stage_6.tscn"),
+				preload("res://stages/stage_7.tscn"),
+				preload("res://stages/stage_8.tscn"),
+				preload("res://stages/stage_9.tscn"),
+				preload("res://stages/stage_10.tscn")
 				]
 
 var player:Player 
@@ -22,7 +26,7 @@ var current_stage:Stage
 var current_stage_index:int = 1
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:	
+func _ready() -> void:
 	_start_stage(current_stage_index)
 	
 func _on_player_game_over() -> void:

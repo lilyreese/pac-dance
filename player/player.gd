@@ -84,5 +84,7 @@ func _on_hurtbox_area_entered(area:Area2D) -> void:
 	game_over.emit()
 
 func _on_collect_area_entered(area:Area2D) -> void:
-	collected.emit()
-	area.collected()
+	var collectable : Collectable = area.get_parent()
+	if (!collectable.already_collected):
+		collected.emit()
+		area.collected()
